@@ -6,6 +6,7 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:2.7.1-node
+      - image: redis
     executor: ruby/default
     steps:
       - checkout
