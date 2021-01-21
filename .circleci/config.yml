@@ -1,14 +1,15 @@
----
 version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2
+
 jobs:
   build:
-    working_directory: ~/trade-tariff-frontend
     docker:
-      - image: circleci/ruby:2.7.1
-      environment:
-        RAILS_ENV: test
-  steps:
-    - checkout
-
-    # Run the tests
-    - run: bundle exec rake
+      - image: cimg/ruby:2.7.1-node
+    executor: ruby/default
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
